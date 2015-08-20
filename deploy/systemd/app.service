@@ -1,0 +1,12 @@
+[Unit]
+Description=app
+After=syslog.target
+
+[Service]
+WorkingDirectory=/app/myapp
+ExecStart=/path/to/node /path/to/rejoice -c /path/to/config
+Restart=Always
+User=appuser
+
+[Install]
+WantedBy=multi-user.target
