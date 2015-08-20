@@ -1,0 +1,35 @@
+{
+  "name": "deploy",
+  "version": "1.0.0",
+  "description": "deploy workshop",
+  "scripts": {
+    "clean": "rm -f log/*.log",
+    "gen-dev-cfg": "confidence -c confidence.json --filter.env=dev > app.json",
+    "gen-prod-cfg": "confidence -c confidence.json --filter.env=prod > app.json",
+    "start-app": "rejoice -c app.json",
+    "start-glue": "node glue.js",
+    "start-simple": "rejoice -c simple.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/geek/hapi-workshop"
+  },
+  "author": "Lloyd Benson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/geek/hapi-workshop/issues"
+  },
+  "keywords": [ "hapi", "workshop", "examples" ],
+  "homepage": "https://github.com/geek/hapi-workshop",
+  "dependencies": {
+    "confidence": "1.x.x",
+    "glue": "2.x.x",
+    "good": "6.x.x",
+    "good-file": "5.x.x",
+    "good-console": "5.x.x",
+    "hapi": "9.x.x",
+    "hoek": "2.x.x",
+    "joi": "6.x.x",
+    "rejoice": "2.x.x"
+  }
+}

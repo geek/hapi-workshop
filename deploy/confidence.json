@@ -1,0 +1,79 @@
+{
+    "connections": [
+        {
+            "port": 8080,
+            "labels": [ "api", "http" ]
+        }
+    ],
+    "plugins": {
+        "$filter": "env",
+        "$base": {
+            "good": {
+                "opsInterval": 5000,
+                "requestHeaders": true
+            }
+        },
+        "$default": {
+            "good": {
+                "reporters": [
+                {
+                    "reporter": "good-file",
+                    "events": { "error": "*" },
+                    "config": "./log/error.log"
+                }]
+            }
+        },
+        "dev": {
+            "good": {
+                "requestPayload": true,
+                "responsePayload": true,
+                "reporters": [
+                {
+                    "reporter": "good-console",
+                    "events": { "response": "*", "error": "*", "ops": "*" }
+                },
+                {
+                    "reporter": "good-file",
+                    "events": { "response": "*" },
+                    "config": "./log/response.log"
+                },
+                {
+                    "reporter": "good-file",
+                    "events": { "ops": "*" },
+                    "config": "./log/ops.log"
+                },
+                {
+                    "reporter": "good-file",
+                    "events": { "wreck": "*" },
+                    "config": "./log/wreck.log"
+                },
+                {
+                    "reporter": "good-file",
+                    "events": { "error": "*" },
+                    "config": "./log/error.log"
+                }]
+            }
+        },
+        "prod": {
+            "good": {
+                "reporters": [
+                {
+                    "reporter": "good-file",
+                    "events": { "response": "*" },
+                    "config": "./log/response.log"
+                },
+                {
+                    "reporter": "good-file",
+                    "events": { "ops": "*" },
+                    "config": "./log/ops.log"
+                },
+                {
+                    "reporter": "good-file",
+                    "events": { "error": "*" },
+                    "config": "./log/error.log"
+                }]
+            }
+        }
+    }
+}
+
