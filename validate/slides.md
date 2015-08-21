@@ -20,8 +20,12 @@ var schema = {
 ```
 ## validate schema
 ```javascript
-// err === null -> valid
-var err = Joi.validate({ a: 'a string' }, schema);
+Joi.validate({ a: 'a string' }, schema, function (err, value) {
+
+    if (!err) {
+        console.log(JSON.stringify(value) + ' validated');
+    }
+});
 ```
 
 ## notes on validating
