@@ -37,14 +37,14 @@ var Joi = require('joi');
 var schema = Joi.object().keys({
     username: Joi.string().alphanum().min(3).max(30).required(),
     password: Joi.string().regex(/[a-zA-Z0-9]{3,30}/),
-    access_token: [Joi.string(), Joi.number()],
+    accessToken: [Joi.string(), Joi.number()],
     birthyear: Joi.number().integer().min(1900).max(2013),
     email: Joi.string().email()
-}).with('username', 'birthyear').without('password', 'access_token');
+}).with('username', 'birthyear').without('password', 'accessToken');
 
 var thing = { username: 'abc', birthyear: 1994 };
 // err === null -> valid
-Joi.validate(thing, schema, function(err, value) {
+Joi.validate(thing, schema, function (err, value) {
 
     if (!err) {
         console.log(JSON.stringify(value) + ' validated');
@@ -71,25 +71,24 @@ server.route({
     method: 'GET',
     path: '/hello',
     config: {
-    handler: function (request, reply) {
+        handler: function (request, reply) {
 
-        var message = '';
-        if (request.query.id) {
-            message = 'your id is ' + request.query.id;
+            var message = '';
+            if (request.query.id) {
+                message = 'your id is ' + request.query.id;
+            }
+            if (request.query.username) {
+                message = 'your username is ' + request.query.username;
+            }
+            return reply('hello ' + message);
+        },
+        validate: {
+            query: Joi.object({
+                id: Joi.number().min(5),
+                username: Joi.string().alphanum().min(3).max(10)
+            }).xor('id','username').required()
         }
-        if (request.query.username) {
-            message = 'your username is ' + request.query.username;
-        }
-        
-        return reply('hello ' + message);
-    },
-    validate: {
-      query: Joi.object({
-          id: Joi.number().min(5),
-          username: Joi.string().alphanum().min(3).max(10)
-      }).xor('id','username').required()
     }
-  }
 });
 
 server.start(function () {
