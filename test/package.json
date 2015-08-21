@@ -4,7 +4,7 @@
   "description": "test workshop",
   "main": "lib/index.js",
   "scripts": {
-    "test": "lab -v -a code -L",
+    "test": "lab -v -a code -L -t 100 -m 2000",
     "test-simple": "lab -v -a code -L -g simple",
     "test-complex": "lab -v -a code -L -g complex"
   },
