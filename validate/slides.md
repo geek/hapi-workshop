@@ -15,13 +15,17 @@
 ```javascript
 var Joi = require('joi');
 var schema = {
-  a: Joi.string()
+    a: Joi.string()
 };
 ```
 ## validate schema
 ```javascript
-// err === null -> valid
-var err = Joi.validate({ a: 'a string' }, schema);
+Joi.validate({ a: 'a string' }, schema, function (err, value) {
+
+    if (!err) {
+        console.log(JSON.stringify(value) + ' validated');
+    }
+});
 ```
 
 ## notes on validating
@@ -37,14 +41,14 @@ var Joi = require('joi');
 var schema = Joi.object().keys({
     username: Joi.string().alphanum().min(3).max(30).required(),
     password: Joi.string().regex(/[a-zA-Z0-9]{3,30}/),
-    access_token: [Joi.string(), Joi.number()],
+    accessToken: [Joi.string(), Joi.number()],
     birthyear: Joi.number().integer().min(1900).max(2013),
     email: Joi.string().email()
-}).with('username', 'birthyear').without('password', 'access_token');
+}).with('username', 'birthyear').without('password', 'accessToken');
 
 var thing = { username: 'abc', birthyear: 1994 };
 // err === null -> valid
-Joi.validate(thing, schema, function(err, value) {
+Joi.validate(thing, schema, function (err, value) {
 
     if (!err) {
         console.log(JSON.stringify(value) + ' validated');
@@ -71,25 +75,24 @@ server.route({
     method: 'GET',
     path: '/hello',
     config: {
-    handler: function (request, reply) {
+        handler: function (request, reply) {
 
-        var message = '';
-        if (request.query.id) {
-            message = 'your id is ' + request.query.id;
+            var message = '';
+            if (request.query.id) {
+                message = 'your id is ' + request.query.id;
+            }
+            if (request.query.username) {
+                message = 'your username is ' + request.query.username;
+            }
+            return reply('hello ' + message);
+        },
+        validate: {
+            query: Joi.object({
+                id: Joi.number().min(5),
+                username: Joi.string().alphanum().min(3).max(10)
+            }).xor('id','username').required()
         }
-        if (request.query.username) {
-            message = 'your username is ' + request.query.username;
-        }
-        
-        return reply('hello ' + message);
-    },
-    validate: {
-      query: Joi.object({
-          id: Joi.number().min(5),
-          username: Joi.string().alphanum().min(3).max(10)
-      }).xor('id','username').required()
     }
-  }
 });
 
 server.start(function () {
@@ -119,27 +122,27 @@ var server = new Hapi.Server();
 server.connection({ port: 8080 });
 
 server.route({
-  method: 'GET',
-  path: '/hello/{name}',
-  config: {
-    handler: function (request, reply) {
+    method: 'GET',
+    path: '/hello/{name}',
+    config: {
+        handler: function (request, reply) {
 
-        return reply({ success: true });
-    },
-    validate: {
-      // params, query, payload, headers
-      params: {
-          name: Joi.string().required()
-      }
-    },
-    response: {
-        // set percent rate
-        sample: 0,
-        schema: Joi.object().keys({
-            success: Joi.boolean().required()
-        })
+            return reply({ success: true });
+        },
+        validate: {
+            // params, query, payload, headers
+            params: {
+                name: Joi.string().required()
+            }
+        },
+        response: {
+            // set percent rate
+            sample: 0,
+            schema: Joi.object().keys({
+                success: Joi.boolean().required()
+            })
+        }
     }
-  }
 });
 
 server.start(function () {

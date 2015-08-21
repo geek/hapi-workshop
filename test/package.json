@@ -1,0 +1,31 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "test workshop",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "lab -v -a code -L -t 100 -m 2000",
+    "test-simple": "lab -v -a code -L -g simple",
+    "test-complex": "lab -v -a code -L -g complex"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/geek/hapi-workshop"
+  },
+  "author": "Lloyd Benson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/geek/hapi-workshop/issues"
+  },
+  "keywords": [ "hapi", "workshop", "examples" ],
+  "homepage": "https://github.com/geek/hapi-workshop",
+  "dependencies": {
+    "hapi": "9.x.x",
+    "hoek": "2.x.x",
+    "joi": "6.x.x"
+  },
+  "devDependencies": {
+    "lab": "5.x.x",
+    "code": "1.x.x"
+  }
+}
