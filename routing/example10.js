@@ -10,7 +10,7 @@ var createUser = function (request, reply) {
 
 var retrieveUser = function (request, reply) {
 
-    reply({ Hello: request.params.hello });
+    reply(users[request.params.id]);
 };
 
 
