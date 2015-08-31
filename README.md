@@ -1,5 +1,8 @@
-# hapi-workshop
 Materials for nodeconf EU workshop
+
+```sh
+npm install -g npm-clone && npm-clone install hapi-workshop
+```
 
 ## Outline
 
@@ -7,8 +10,7 @@ Materials for nodeconf EU workshop
 2. Server
 3. Routing
 4. Plugins
-5. Caching
-6. Validation
-7. Testing
-8. Monitoring
-9. Deployment
+5. Validation
+6. Testing
+7. Monitoring
+8. Deployment
