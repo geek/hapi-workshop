@@ -203,4 +203,4 @@ broadcast -c broadcast.json
 
 ## Conclusion
 
-You can get some great statistics about your system and with a proper aggregate log tool like splunk, logstash, etc you can easily see what your app is doing.  This plugin gives you many 'good' statistics for free.
+You can get some great statistics about your system.  With a proper aggregate log tool like splunk or logstash, you can easily see what your app is doing.  This plugin gives you many "good" statistics for free.

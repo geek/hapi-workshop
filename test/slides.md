@@ -181,4 +181,4 @@ lab -a code -L -t 100 -m 10000
 ```
 
 ## conclusion
-Testing is a critical piece to writing quality software.  We have shown how to leverage lab to help you with testing, code coverage, and linting.  You can utilize server.inject() for your testing to bypass the network stack. Finally, you can use multiple reporters to integrate with your testing/ci frameworks.
+Testing is a critical piece to writing quality software.  We have shown how to leverage lab to help you with testing, code coverage, and linting.  You can utilize server.inject() to bypass the network stack. Finally, you can use multiple reporters to integrate with your testing/ci frameworks.

@@ -212,4 +212,4 @@ end script
 ```
 
 ## Conclusion
-You can now see how to utilize confidence and rejoice to help deploy your environments.
+You can see how to utilize confidence and rejoice together to deploy your environment specific application.
