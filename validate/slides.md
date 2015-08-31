@@ -181,4 +181,4 @@ any.when('key',
 ```
 
 ## conclusion
-Joi is an extremely powerful and useful library that integrates with hapi, but can also be used on other projects.  It is useful for not only validating your inputs params, query, headers, and payload but also your responses.
+Joi is an extremely powerful library.  You can integrate it directly with hapi, but it can also be used on other non-hapi projects.  It is useful for not only validating your inputs of params, query, headers, and payload but also your responses.
