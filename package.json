@@ -1,7 +1,7 @@
 {
   "name": "hapi-workshop",
   "description": "Materials for nodeconf EU hapi workshop",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "repository": "git://github.com/geek/hapi-workshop",
   "main": "index.js",
   "keywords": [
