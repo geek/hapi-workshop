@@ -55,7 +55,7 @@ Lab.expect(object).to.not.exist();
      console,html,junit,lcov,tap,json,clover
 -m - individual test timeout in milliseconds (default 2s)
 -t - minimum coverage threshold percentage (default 100%)
--g - global leak check (default)
+-g - grep pattern
 -v - verbose 
 -i - individual tests (e.g. 1-2 or 1,3)
 -p - run tests in parallel
